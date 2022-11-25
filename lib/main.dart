@@ -23,6 +23,14 @@ class JankenPage extends StatefulWidget {
 }
 
 class _JankenPageState extends State<JankenPage> {
+  String myHand = '';
+
+  void _getMyHand(String getHand) {
+    setState(() {
+      myHand = getHand;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,26 +38,39 @@ class _JankenPageState extends State<JankenPage> {
         title: const Text('じゃんけん'),
       ),
       body: Center(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ElevatedButton(
-              onPressed: () {
-                print('✊');
-              },
-              child: const Text('✊'),
+            Text(
+              myHand,
+              style: const TextStyle(fontSize: 40),
             ),
-            ElevatedButton(
-              onPressed: () {
-                print('✌️');
-              },
-              child: const Text('✌️'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                print('✋');
-              },
-              child: const Text('✋'),
+            const SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    // print('✊');
+                    _getMyHand('✊');
+                  },
+                  child: const Text('✊'),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    // print('✌️');
+                    _getMyHand('✌️');
+                  },
+                  child: const Text('✌️'),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    // print('✋');
+                    _getMyHand('✋');
+                  },
+                  child: const Text('✋'),
+                ),
+              ],
             ),
           ],
         ),
