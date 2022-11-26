@@ -40,10 +40,7 @@ class _JankenPageState extends State<JankenPage> {
 
   void _generateYourHand() {
     final randomNum = math.Random().nextInt(3);
-    print(randomNum);
-
     yourHand = randomNumToHand(randomNum);
-    print(randomNumToHand(randomNum));
   }
 
   String randomNumToHand(int randomNum) {
@@ -90,21 +87,18 @@ class _JankenPageState extends State<JankenPage> {
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    // print('✊');
                     _getMyHand('✊');
                   },
                   child: const Text('✊'),
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    // print('✌️');
                     _getMyHand('✌️');
                   },
                   child: const Text('✌️'),
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    // print('✋');
                     _getMyHand('✋');
                   },
                   child: const Text('✋'),
