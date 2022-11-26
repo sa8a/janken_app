@@ -36,6 +36,7 @@ class _JankenPageState extends State<JankenPage> {
     setState(() {
       myHand = getHand;
       _generateYourHand();
+      _result();
     });
   }
 
@@ -53,6 +54,18 @@ class _JankenPageState extends State<JankenPage> {
       return '✋';
     } else {
       return '失敗...もう一度試してください。';
+    }
+  }
+
+  void _result() {
+    if (myHand == yourHand) {
+      result = '引き分け';
+    } else if (myHand == '✊' && yourHand == '✌️' ||
+        myHand == '✌️' && yourHand == '✋' ||
+        myHand == '✋' && yourHand == '✊') {
+      result = 'あなたの勝ち';
+    } else {
+      result = 'あなたの負け';
     }
   }
 
