@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+// Transform.rotateでpiを使うため
+import 'dart:math';
+
+// math.Random()使うため
+import 'dart:math' as math;
 
 void main() {
   runApp(const MyApp());
@@ -24,11 +29,33 @@ class JankenPage extends StatefulWidget {
 
 class _JankenPageState extends State<JankenPage> {
   String myHand = '';
+  String yourHand = '';
 
   void _getMyHand(String getHand) {
     setState(() {
       myHand = getHand;
+      _generateYourHand();
     });
+  }
+
+  void _generateYourHand() {
+    final randomNum = math.Random().nextInt(3);
+    print(randomNum);
+
+    yourHand = randomNumToHand(randomNum);
+    print(randomNumToHand(randomNum));
+  }
+
+  String randomNumToHand(int randomNum) {
+    if (randomNum == 0) {
+      return '✊';
+    } else if (randomNum == 1) {
+      return '✌️';
+    } else if (randomNum == 2) {
+      return '✋';
+    } else {
+      return '失敗...もう一度試してください。';
+    }
   }
 
   @override
@@ -41,6 +68,18 @@ class _JankenPageState extends State<JankenPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            const Text(
+              '相手',
+              style: TextStyle(fontSize: 20),
+            ),
+            Transform.rotate(
+              angle: 180 * pi / 180,
+              child: Text(
+                yourHand,
+                style: const TextStyle(fontSize: 40),
+              ),
+            ),
+            const SizedBox(height: 50),
             Text(
               myHand,
               style: const TextStyle(fontSize: 40),
